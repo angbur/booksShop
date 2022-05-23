@@ -59,7 +59,7 @@ export const bagSidebar = () => {
     const payButton = document.createElement('button');
     payButton.setAttribute("type", "button");
     payButton.setAttribute("class", "pulsing-button");
-    payButton.innerHTML = `Confirm order`;
+    payButton.innerHTML = `CONFIRM`;
 
     payButton.addEventListener('click', function(){
         document.querySelector('#app').innerHTML=``;

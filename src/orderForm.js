@@ -1,3 +1,4 @@
+import { confirmForm } from "./confirmForm.js";
 export const orderForm = () => {
 
     const data = {
@@ -22,12 +23,6 @@ export const orderForm = () => {
        data.gifts.length > 0) ? false : true
     );
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const value = event.target.value;
-        console.log(value);
-    };
-
     const boxForm = document.createElement('div');
     boxForm.setAttribute("class", "box");
 
@@ -38,12 +33,6 @@ export const orderForm = () => {
     const form = document.createElement('form');
     boxForm.appendChild(form);
 
-    form.addEventListener("submit", function(event) {
-        const data = new FormData(form);
-        console.log('tah')
-        event.preventDefault();
-      }, false);
-
     const firstNameInput = document.createElement('input');
     firstNameInput.setAttribute("type", "text");
     firstNameInput.setAttribute("id", "fname");
@@ -51,14 +40,12 @@ export const orderForm = () => {
     firstNameInput.setAttribute("required", "");
     firstNameInput.setAttribute("autofocus", true);
     firstNameInput.setAttribute("value", data.firstName);
-    firstNameInput.setAttribute("pattern", " /[^A-Za-z]+/");
 
     const lastNameInput = document.createElement('input');
     lastNameInput.setAttribute("type", "text");
     lastNameInput.setAttribute("id", "lname");
     lastNameInput.setAttribute("minlength", "5");
     lastNameInput.setAttribute("required", "");
-    lastNameInput.setAttribute("pattern", " /[^A-Za-z]+/");
 
     const deliveryDateInput = document.createElement('input');
     deliveryDateInput.setAttribute("type", "date");
@@ -178,7 +165,7 @@ export const orderForm = () => {
 
     const paymentLabel = document.createElement('h3');
     paymentLabel.innerHTML = `Choose the payment:`;
-    form.appendChild( paymentLabel);
+    form.appendChild(paymentLabel);
     form.appendChild(fieldset);
 
     const giftsCheckboxLabel = document.createElement('h3');
@@ -186,13 +173,21 @@ export const orderForm = () => {
     form.appendChild(giftsCheckboxLabel);
     form.appendChild(fieldset2);
 
-    const submitButton = document.createElement('button');
+    const submitButton = document.createElement('input');
     submitButton.setAttribute("type", "submit");
+    submitButton.setAttribute("value", "Submit");
     submitButton.setAttribute("class", "button-submit");
-    submitButton.setAttribute("disabled", checkForm());
     submitButton.innerHTML = `Confirm order`;
 
     form.appendChild(submitButton);
+
+    const handleSubmit = (e) => {
+        const app = document.querySelector('#app');
+        app.innerHTML =``;
+        app.append(confirmForm());
+    };
+
+    form.addEventListener('submit', handleSubmit())
 
     return boxForm;
 }

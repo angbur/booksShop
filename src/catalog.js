@@ -4,11 +4,11 @@ import { bagSidebar } from "./bagSidebar.js";
 
 export const showCatalog = () => {
     let order = [];
-    window.sessionStorage.getItem("userOrder").length > 0
+    window.sessionStorage.getItem("userOrder") && window.sessionStorage.getItem("userOrder").length > 0
     ? (
         order = JSON.parse(window.sessionStorage.getItem("userOrder")) || []
     )
-    :   null
+    :   order = []
     
     
     const buttonFixedIcon = document.createElement("button");
