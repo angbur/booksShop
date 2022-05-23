@@ -4,12 +4,9 @@ import { bagSidebar } from "./bagSidebar.js";
 
 export const showCatalog = () => {
     let order = [];
-    window.sessionStorage.getItem("userOrder") && window.sessionStorage.getItem("userOrder").length > 0
-    ? (
-        order = JSON.parse(window.sessionStorage.getItem("userOrder")) || []
-    )
-    :   order = []
-    
+    if ( window.sessionStorage.getItem("userOrder") && window.sessionStorage.getItem("userOrder").length > 0) {
+        order = JSON.parse(window.sessionStorage.getItem("userOrder")) || [];
+    }
     
     const buttonFixedIcon = document.createElement("button");
     buttonFixedIcon.setAttribute("class", "pulsing-button icon-fixed");
@@ -48,6 +45,10 @@ export const showCatalog = () => {
 
                 const cardHeader = document.createElement("div");
                 cardHeader.setAttribute("class", "card-header");
+
+                const price = document.createElement('h3');
+                price.innerHTML = `${el.price} $`;
+                cardHeader.appendChild(price);
 
                 const buttonIcon = document.createElement("button");
                 buttonIcon.setAttribute("type", "button");
@@ -108,7 +109,7 @@ export const showCatalog = () => {
                 card.appendChild(cardFooter);
                 
                 cardWrapper.appendChild(card);
-            }) : null
+            }) : `Check your network`
         )
     };          
 };

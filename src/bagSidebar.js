@@ -3,11 +3,9 @@ import { orderForm } from "./orderForm.js";
 export const bagSidebar = () => {
 
     let userOrderId = [];
-    window.sessionStorage.getItem("userOrder").length > 0
-    ? (
-        userOrderId = JSON.parse(window.sessionStorage.getItem("userOrder")) || []
-    )
-    :   null
+    if(window.sessionStorage.getItem("userOrder").length > 0) {
+        userOrderId = JSON.parse(window.sessionStorage.getItem("userOrder")) || [];
+    }
     
     const modal = document.createElement('div');
     modal.setAttribute("class", "sidebar");
@@ -71,8 +69,6 @@ export const bagSidebar = () => {
 
     modalContent.appendChild(sidebarTitle);
     modalContent.appendChild(summary);
-   
-
 
     const setOrderList = (arr)=> {
         let orderList = document.createElement('list');
