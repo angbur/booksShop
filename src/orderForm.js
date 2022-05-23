@@ -103,6 +103,7 @@ export const orderForm = () => {
     streetInput.setAttribute("required", "");
     streetInput.setAttribute("value", data.street);
     streetInput.setAttribute("name", "street");
+    streetInput.setAttribute("min", "5");
     streetInput.addEventListener('change', handleChange);
 
     const houseNumberInput = document.createElement('input');
@@ -110,6 +111,7 @@ export const orderForm = () => {
     houseNumberInput.setAttribute("id", "house");
     houseNumberInput.setAttribute("value", data.house);
     houseNumberInput.setAttribute("name", "house");
+    houseNumberInput.setAttribute("pattern", "[0-9]+");
     houseNumberInput.addEventListener('change', handleChange);
 
     const flatNumberInput = document.createElement('input');
@@ -118,6 +120,7 @@ export const orderForm = () => {
     flatNumberInput.setAttribute("required", "");
     flatNumberInput.setAttribute("value", data.flat);
     flatNumberInput.setAttribute("name", "flat");
+    flatNumberInput.setAttribute("pattern", "[0-9]+");
     flatNumberInput.addEventListener('change', handleChange);
 
     const fieldset = document.createElement('fieldset');
@@ -241,13 +244,7 @@ export const orderForm = () => {
 
     form.appendChild(submitButton);
 
-    const handleSubmit = () => {
-        const app = document.querySelector('#app');
-        app.innerHTML =``;
-        //app.append(confirmForm());
-    };
-
-    form.addEventListener('submit', handleSubmit())
+   
 
     return boxForm;
 }
