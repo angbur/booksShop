@@ -1,7 +1,7 @@
 import { confirmForm } from "./confirmForm.js";
 export const orderForm = () => {
 
-    const data = {
+   let data = {
         firstName: '',
         lastName: '',
         deliveryDate: '',
@@ -20,8 +20,44 @@ export const orderForm = () => {
        data.house.length > 0 &&
        data.flat.length > 0 &&
        data.paymentType.length > 0 &&
-       data.gifts.length > 0) ? false : true
+       data.gifts.length > 0) ? true : false
     );
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        const value = e.target.value;
+        data = {
+            ...data,
+            [e.target.name.trim()]: value
+          };
+        console.log(data);
+    };
+
+    const validateCheckboxes = () => {
+        let numberOfCheckedItems = 0;  
+        const checkboxes = document.getElementsByName("gifts"); 
+        for(let i = 0; i < checkboxes.length; i++)  
+        {  
+            if(checkboxes[i].checked)  
+                numberOfCheckedItems++;  
+        }  
+        if(numberOfCheckedItems > 2)  
+        {  
+            alert("You can't select more than two gifts!");  
+            return false;  
+        }  
+    }
+
+    const handleChangeGifts = (e) => {
+        e.preventDefault();
+        validateCheckboxes();
+        const value = e.target.value;
+        if (data.gifts.includes(value)){
+            data.gifts.splice(data.gifts.indexOf(value.toString(),1))
+        } else {
+            data.gifts.push(value);
+        }
+    };
 
     const boxForm = document.createElement('div');
     boxForm.setAttribute("class", "box");
@@ -39,33 +75,50 @@ export const orderForm = () => {
     firstNameInput.setAttribute("minlength", "4");
     firstNameInput.setAttribute("required", "");
     firstNameInput.setAttribute("autofocus", true);
+    firstNameInput.setAttribute("name", "firstName");
     firstNameInput.setAttribute("value", data.firstName);
+    firstNameInput.addEventListener('change', handleChange);
 
     const lastNameInput = document.createElement('input');
     lastNameInput.setAttribute("type", "text");
     lastNameInput.setAttribute("id", "lname");
     lastNameInput.setAttribute("minlength", "5");
     lastNameInput.setAttribute("required", "");
+    lastNameInput.setAttribute("name", "lastName");
+    lastNameInput.setAttribute("value", data.lastName);
+    lastNameInput.addEventListener('change', handleChange);
 
     const deliveryDateInput = document.createElement('input');
     deliveryDateInput.setAttribute("type", "date");
     deliveryDateInput.setAttribute("id", "delivery");
     deliveryDateInput.setAttribute("min", Date.now());
     deliveryDateInput.setAttribute("required", "");
+    deliveryDateInput.setAttribute("value", data.deliveryDate);
+    deliveryDateInput.setAttribute("name", "deliveryDate");
+    deliveryDateInput.addEventListener('change', handleChange);
 
     const streetInput = document.createElement('input');
     streetInput.setAttribute("type", "text");
     streetInput.setAttribute("id", "street");
     streetInput.setAttribute("required", "");
+    streetInput.setAttribute("value", data.street);
+    streetInput.setAttribute("name", "street");
+    streetInput.addEventListener('change', handleChange);
 
     const houseNumberInput = document.createElement('input');
     houseNumberInput.setAttribute("type", "text");
     houseNumberInput.setAttribute("id", "house");
+    houseNumberInput.setAttribute("value", data.house);
+    houseNumberInput.setAttribute("name", "house");
+    houseNumberInput.addEventListener('change', handleChange);
 
     const flatNumberInput = document.createElement('input');
     flatNumberInput.setAttribute("type", "text");
     flatNumberInput.setAttribute("id", "flat");
     flatNumberInput.setAttribute("required", "");
+    flatNumberInput.setAttribute("value", data.flat);
+    flatNumberInput.setAttribute("name", "flat");
+    flatNumberInput.addEventListener('change', handleChange);
 
     const fieldset = document.createElement('fieldset');
     fieldset.setAttribute("id", "radio-group");
@@ -75,7 +128,10 @@ export const orderForm = () => {
     paymentTypeInput1.setAttribute("id", "payment-cash");
     paymentTypeInput1.setAttribute("value", "Cash");
     paymentTypeInput1.setAttribute("required", "");
-    paymentTypeInput1.setAttribute("name", "radio-group");
+    paymentTypeInput1.setAttribute("class", "radio-group");
+    paymentTypeInput1.setAttribute("name", "paymentType");
+    paymentTypeInput1.addEventListener('change', handleChange);
+
     const payLabel1 = document.createElement('label');
     payLabel1.setAttribute("for", "payment-cash");
     payLabel1.innerHTML = `Cash`;
@@ -88,7 +144,10 @@ export const orderForm = () => {
     paymentTypeInput2.setAttribute("id", "payment-card");
     paymentTypeInput2.setAttribute("value", "Card");
     paymentTypeInput2.setAttribute("required", "");
-    paymentTypeInput2.setAttribute("name", "radio-group");
+    paymentTypeInput2.setAttribute("class", "radio-group");
+    paymentTypeInput2.setAttribute("name", "paymentType");
+    paymentTypeInput2.addEventListener('change', handleChange);
+
     const payLabel2 = document.createElement('label');
     payLabel2.setAttribute("for", "payment-card");
     payLabel2.innerHTML = `Card`;
@@ -99,12 +158,15 @@ export const orderForm = () => {
     const fieldset2 = document.createElement('fieldset');
     fieldset2.setAttribute("id", "checkbox-group");
 
-    const giftsArray = [`Pack as a gift`, `Postcard`, `Provide 2% discount to the next time`, `Branded pen or pencil`];
+    const giftsArray = [`Pack as a gift`, `Postcard`, `2% discount to the next time`, `Branded pen or pencil`];
 
     giftsArray.map((el,id)=> {
         let giftsCheckboxInput = document.createElement('input');
         giftsCheckboxInput.setAttribute("type", "checkbox");
         giftsCheckboxInput.setAttribute("id", `gifts${id}`);
+        giftsCheckboxInput.setAttribute("name", "gifts");
+        giftsCheckboxInput.setAttribute("value", (Array.from(el).join("")).replace(",",));
+        giftsCheckboxInput.addEventListener('change', handleChangeGifts);
 
         const checkboxLabel = document.createElement('label');
         checkboxLabel.setAttribute("for", "gifts${id}");
@@ -118,8 +180,6 @@ export const orderForm = () => {
 
         return fieldset2;
     });
-
-   
 
     const firstNameLabel= document.createElement('label');
     firstNameLabel.setAttribute("for", "fname");
@@ -181,10 +241,10 @@ export const orderForm = () => {
 
     form.appendChild(submitButton);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         const app = document.querySelector('#app');
         app.innerHTML =``;
-        app.append(confirmForm());
+        //app.append(confirmForm());
     };
 
     form.addEventListener('submit', handleSubmit())

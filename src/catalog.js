@@ -20,6 +20,7 @@ export const showCatalog = () => {
 
     buttonFixedIcon.addEventListener('click', function(e) {
         e.preventDefault();
+
         const sidebar = bagSidebar();
         sidebar.classList.add("is-visible");
     });
@@ -61,6 +62,7 @@ export const showCatalog = () => {
                 buttonIcon.addEventListener('click', function () {
                     order = [...order,{id: id, title: el.title, price: el.price, imageLink: el.imageLink}];
                     sessionStorage.setItem("userOrder", JSON.stringify(order));
+                    alert(`Added to cart (:`)
                     location.reload();
                 })
 
