@@ -27,6 +27,16 @@ body, :root, html {
     box-sizing: border-box;
 }
 
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: var(--tertiary-light);
+}
+
 h1 {
     font-family: 'Roboto Condensed', sans-serif;
     letter-spacing: 2px;
@@ -94,6 +104,10 @@ header li {
     position: relative;
     top: 3px;
     fill: var(--additional);
+}
+
+img.logo-icon:hover {
+    color: var(--tertiary-light);
 }
 
 #app {

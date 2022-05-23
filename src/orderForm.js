@@ -50,7 +50,7 @@ export const orderForm = () => {
     const deliveryDateInput = document.createElement('input');
     deliveryDateInput.setAttribute("type", "date");
     deliveryDateInput.setAttribute("id", "delivery");
-    deliveryDateInput.setAttribute("max", Date.now());
+    deliveryDateInput.setAttribute("min", Date.now());
     deliveryDateInput.setAttribute("required", "");
 
     const streetInput = document.createElement('input');

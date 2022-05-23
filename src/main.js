@@ -22,10 +22,16 @@ let logoSignet = document.createElement('img');
 logoSignet.setAttribute("src", "assets/icon/books.svg");
 logoSignet.setAttribute("class", "logo-icon");
 logoSignet.setAttribute("alt", "");
-span1.appendChild(logoSignet);
+let linkHomeSignet = document.createElement('a');
+linkHomeSignet.setAttribute("href", "https://angbur.github.io/booksShop/");
+linkHomeSignet.appendChild(logoSignet);
+span1.appendChild(linkHomeSignet);
 
 let logoText = document.createElement('h1');
-logoText.innerHTML = `Awesome Books Shop`;
+let linkHome = document.createElement('a');
+linkHome.innerHTML = `Awesome Books Shop`;
+linkHome.setAttribute("href", "https://angbur.github.io/booksShop/");
+logoText.appendChild(linkHome);
 span2.appendChild(logoText);
 
 logo.append(span1);

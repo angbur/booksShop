@@ -44,7 +44,6 @@ export const bagSidebar = () => {
     const getTotal = (arr) => {
         let result = 0;
         arr.map(el => result += parseInt(el.price));
-
         return result;
     };
 
@@ -78,6 +77,8 @@ export const bagSidebar = () => {
         emptyParagraph.innerHTML=`Your bag is empty.`;
 
         liEmptyItem.appendChild(emptyParagraph);
+
+        console.log(arr);
 
         if (arr.length !== 0){
             arr.map((el,id)=>{
