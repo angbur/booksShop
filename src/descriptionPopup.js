@@ -44,8 +44,6 @@ export const descriptionPopup = (book,id) => {
     const description = document.createElement('p');
     description.innerHTML = book.description;
     modalContent.appendChild(description);
-
-    //window.addEventListener("click", windowOnClick);
     
     return modal;
 };

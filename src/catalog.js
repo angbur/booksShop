@@ -1,10 +1,18 @@
 import { fetchData } from "./fetchData.js";
 import { descriptionPopup } from "./descriptionPopup.js";
+import { bagSidebar } from "./bagSidebar.js";
 
 export const showCatalog = () => {
+    let order = [];
+    window.sessionStorage.getItem("userOrder").length > 0
+    ? (
+        order = JSON.parse(window.sessionStorage.getItem("userOrder")) || []
+    )
+    :   null
+    
     
     const buttonFixedIcon = document.createElement("button");
-    buttonFixedIcon.setAttribute("class", "icon-fixed");
+    buttonFixedIcon.setAttribute("class", "pulsing-button icon-fixed");
     buttonFixedIcon.setAttribute("type", "button");
 
     const bagIcon = document.createElement("img");
@@ -13,6 +21,12 @@ export const showCatalog = () => {
     buttonFixedIcon.appendChild(bagIcon);
     document.querySelector('#app').appendChild(buttonFixedIcon);
 
+    buttonFixedIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        const sidebar = bagSidebar();
+        sidebar.classList.add("is-visible");
+    });
+
     let title = document.createElement("h2");
     title.innerHTML = `Latest`;
     document.querySelector('#app').appendChild(title);
@@ -20,10 +34,14 @@ export const showCatalog = () => {
     let cardWrapper = document.createElement("div");
     cardWrapper.setAttribute("class", "card-wrapper");
     document.querySelector('#app').appendChild(cardWrapper);
+    
+    fetchData()
+    .then(data => showCard(data))
+    .catch(reason => console.log(reason.message))
 
     const showCard = (data) => {
         return(
-            data.map((el,id)=>{
+            data ? data.map((el,id)=>{
                 const card = document.createElement("div");
                 card.setAttribute("class", "card");
                 card.setAttribute("id", id);
@@ -38,6 +56,12 @@ export const showCatalog = () => {
                 iconCart.setAttribute("class", "icon-round");
                 iconCart.setAttribute("alt", "");
                 buttonIcon.appendChild(iconCart);
+
+                buttonIcon.addEventListener('click', function () {
+                    order = [...order,{id: id, title: el.title, price: el.price, imageLink: el.imageLink}];
+                    sessionStorage.setItem("userOrder", JSON.stringify(order));
+                    location.reload();
+                })
 
                 cardHeader.appendChild(buttonIcon);
                 card.appendChild(cardHeader);
@@ -84,12 +108,7 @@ export const showCatalog = () => {
                 card.appendChild(cardFooter);
                 
                 cardWrapper.appendChild(card);
-            })
+            }) : null
         )
-    };       
-
-    fetchData()
-    .then(data => showCard(data))
-    .catch(reason => console.log(reason.message))
-   
+    };          
 };

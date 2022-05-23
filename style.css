@@ -7,6 +7,7 @@
     --tertiary: #FFCB74;
     --tertiary-light: #FFD081;
     --additional: #F6F6F6;
+    --important : #F8494A;
     }
 
 body, :root, html {
@@ -103,7 +104,7 @@ header li {
 
 button {
     font-family: 'Roboto Condensed', sans-serif;
-    transition: 0.6s;
+    cursor: pointer;
 }
 
 .button-primary {
@@ -153,7 +154,6 @@ button {
 
 .card {
     display: flex;
-    cursor: pointer;
     flex-direction: column;
     align-items: center;
     justify-content: baseline;
@@ -205,6 +205,11 @@ button {
     top: 1px;
 }
 
+.pulsing-button {
+    -webkit-animation: heartbeat 4s linear 1s infinite both;
+    animation: heartbeat 4s linear 1s infinite both;
+}
+
 .card-header button :hover {
     scale: 105%;
     cursor: pointer;
@@ -219,8 +224,6 @@ button {
     box-shadow: 8px 8px 24px -17px rgba(66, 68, 90, 1);
     -webkit-filter: grayscale(70%);
     filter: grayscale(70%);
-    -webkit-transition: .3s ease-in-out;
-    transition: .3s ease-in-out;
 }
 
  
@@ -236,6 +239,124 @@ button {
     transform: scale(1.1);
     z-index: 20;
 } 
+
+.sidebar {
+    visibility: hidden;
+    position: fixed;
+    z-index: 30;
+    top: 0; 
+    width: 400px;
+    right: 0;
+    background-color: var(--primary);
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100vh;
+    box-shadow: -31px 31px 31px -35px rgba(66, 68, 90, 1);
+    overflow-x: hidden; 
+}
+
+.summary-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem 3rem;
+}
+
+.summary-box button {
+    background-color: var(--important);
+    font-family: 500;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: -31px 31px 31px -35px rgba(66, 68, 90, 1);
+}
+
+.summary-box > button :hover {
+    background-color: var(--secondary);
+    color: var(--additional);
+}
+
+.sidebar.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.sidebar .close-button {
+    margin-right: 2rem;
+    transition: 0s;
+}
+
+.sidebar h3 {
+    color: var(--additional);
+    margin-left: 3rem;
+}
+
+.sidebar h4 {
+    color: var(--tertiary);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+li {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 2rem 3rem;
+}
+
+.list-item {
+    padding: 1rem 2rem;
+    background: rgb(47,47,47);
+    background: var(--additional);
+    border-radius: 8px;
+}
+
+.list-item p {
+    color: var(--secondary);
+    font-size: 0.8rem;
+}
+
+.item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.item-header img {
+    height: 20px;
+    position: relative;
+    top: 10px;
+    left: 3px;
+}
+
+.item-header button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+}
+
+.item-header button :hover {
+    background-color: var(--primary-light);
+    animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+.item-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.item-footer p {
+    color: var(--important);
+}
 
 .modal-content {
     position: absolute;
@@ -278,7 +399,6 @@ button {
     justify-content: flex-end;
 }
 
-  
 .close-button {
     width: 52px;
     height: 52px;
@@ -296,4 +416,99 @@ button {
 .close-button:hover {
     background-color: var(--tertiary-light);
 } 
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+  }
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    margin: 0.4rem;
+    font-size: 0.6rem;
+    width: 60px;
+    background-color: var(--tertiary);
+    color: var(--primary);
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    top: 30px;
+    left: 20%;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+ @-webkit-keyframes heartbeat {
+    from {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: center center;
+              transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(0.91);
+              transform: scale(0.91);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    17% {
+      -webkit-transform: scale(0.98);
+              transform: scale(0.98);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    33% {
+      -webkit-transform: scale(0.87);
+              transform: scale(0.87);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    45% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+  }
+  @keyframes heartbeat {
+    from {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: center center;
+              transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(0.91);
+              transform: scale(0.91);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    17% {
+      -webkit-transform: scale(0.98);
+              transform: scale(0.98);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    33% {
+      -webkit-transform: scale(0.87);
+              transform: scale(0.87);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    45% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+  }
   
