@@ -19,9 +19,8 @@ export const orderForm = () => {
        data.street.length > 0 &&
        data.house.length > 0 &&
        data.flat.length > 0 &&
-       data.paymentType.length > 0 &&
-       data.gifts.length > 0) ? true : false
-    );
+       (data.paymentType === 'Cash' || data.paymentType === 'Card')
+    ));
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -138,7 +137,6 @@ export const orderForm = () => {
     paymentTypeInput1.setAttribute("type", "radio");
     paymentTypeInput1.setAttribute("id", "payment-cash1");
     paymentTypeInput1.setAttribute("value", "Cash");
-    paymentTypeInput1.setAttribute("required", "");
     paymentTypeInput1.setAttribute("class", "radio-group");
     paymentTypeInput1.setAttribute("name", "paymentType");
     paymentTypeInput1.addEventListener('change', handleChange);
@@ -154,7 +152,6 @@ export const orderForm = () => {
     paymentTypeInput2.setAttribute("type", "radio");
     paymentTypeInput2.setAttribute("id", "payment-card2");
     paymentTypeInput2.setAttribute("value", "Card");
-    paymentTypeInput2.setAttribute("required", "");
     paymentTypeInput2.setAttribute("class", "radio-group");
     paymentTypeInput2.setAttribute("name", "paymentType");
     paymentTypeInput2.addEventListener('change', handleChange);

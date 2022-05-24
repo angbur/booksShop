@@ -329,6 +329,11 @@ span.address {
     color: var(--important);
 }
 
+.input-error {
+    border: 1px solid;
+    border-color: var(--important);
+}
+
 .box {
     display: flex;
     flex-direction: column;
