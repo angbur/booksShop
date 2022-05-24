@@ -38,6 +38,11 @@ export const descriptionPopup = (book,id) => {
 
     modalContent.appendChild(bookTitle);
 
+    const bookSubtitle = document.createElement('h3');
+    bookSubtitle.innerHTML = book.author;
+
+    modalContent.appendChild(bookSubtitle);
+
     const divider = document.createElement('hr');
     modalContent.appendChild(divider);
 
