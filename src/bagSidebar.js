@@ -61,8 +61,13 @@ export const bagSidebar = () => {
     payButton.innerHTML = `CONFIRM`;
 
     payButton.addEventListener('click', function(){
-        document.querySelector('#app').innerHTML=``;
-        document.querySelector('#app').append(orderForm());
+        if (userOrderId.length>0) {
+            document.querySelector('#app').innerHTML=``;
+            document.querySelector('#app').append(orderForm());     
+        } else {
+            alert('You have to add book to bag.')
+        }
+        
     });
 
     summary.appendChild(total);
