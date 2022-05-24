@@ -253,8 +253,6 @@ input#payment-cash {
 }
 
 .card-header button {
-    height: 36px;
-    width: 36px;
     padding: 0.6rem;
     margin: 0.3rem;
     border-radius: 50%;
@@ -562,6 +560,10 @@ li {
     left: 20%;
     z-index: 1;
   }
+
+  .card .tooltip .tooltiptext {
+      margin: 2rem;
+}
   
   .tooltip:hover .tooltiptext {
     visibility: visible;

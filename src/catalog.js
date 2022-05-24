@@ -51,6 +51,13 @@ export const showCatalog = () => {
                 price.innerHTML = `${el.price} $`;
                 cardHeader.appendChild(price);
 
+                const tooltip = document.createElement('div');
+                tooltip.setAttribute("class", "tooltip");
+                const tooltipText = document.createElement('span');
+                tooltipText.setAttribute("class", "tooltiptext");
+                tooltipText.innerHTML = "Add to bag";
+                tooltip.appendChild(tooltipText);
+
                 const buttonIcon = document.createElement("button");
                 buttonIcon.setAttribute("type", "button");
                 const iconCart = document.createElement("img");
@@ -70,7 +77,9 @@ export const showCatalog = () => {
                     location.reload();
                 })
 
-                cardHeader.appendChild(buttonIcon);
+                tooltip.appendChild(buttonIcon);
+
+                cardHeader.appendChild(tooltip);
                 card.appendChild(cardHeader);
 
                 const cardBody = document.createElement("div");
