@@ -77,6 +77,7 @@ export const orderForm = () => {
     firstNameInput.setAttribute("autofocus", true);
     firstNameInput.setAttribute("name", "firstName");
     firstNameInput.setAttribute("value", data.firstName);
+    firstNameInput.setAttribute("pattern", "[a-zA-Z]+");
     firstNameInput.addEventListener('change', handleChange);
 
     const lastNameInput = document.createElement('input');
@@ -86,6 +87,7 @@ export const orderForm = () => {
     lastNameInput.setAttribute("required", "");
     lastNameInput.setAttribute("name", "lastName");
     lastNameInput.setAttribute("value", data.lastName);
+    lastNameInput.setAttribute("pattern", "[a-zA-Z]+");
     lastNameInput.addEventListener('change', handleChange);
 
     const deliveryDateInput = document.createElement('input');
