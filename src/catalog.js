@@ -60,7 +60,11 @@ export const showCatalog = () => {
                 buttonIcon.appendChild(iconCart);
 
                 buttonIcon.addEventListener('click', function () {
-                    order = [...order,{id: id, title: el.title, price: el.price, imageLink: el.imageLink}];
+                    if (order.find((e,inde)=>e.title === el.title)){
+                        order[id].quantity +=1;
+                    } else {
+                        order = [...order,{id: id, title: el.title, price: el.price, imageLink: el.imageLink, quantity: 1}];
+                    }
                     sessionStorage.setItem("userOrder", JSON.stringify(order));
                     alert(`Added to cart (:`)
                     location.reload();

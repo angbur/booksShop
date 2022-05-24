@@ -43,7 +43,7 @@ export const bagSidebar = () => {
 
     const getTotal = (arr) => {
         let result = 0;
-        arr.map(el => result += parseInt(el.price));
+        arr.map(el => result += parseInt(el.price)*el.quantity);
         return result;
     };
 
@@ -78,16 +78,15 @@ export const bagSidebar = () => {
 
         liEmptyItem.appendChild(emptyParagraph);
 
-        console.log(arr);
-
         if (arr.length !== 0){
             arr.map((el,id)=>{
             const liItem = document.createElement('li');
             liItem.setAttribute("class", "list-item");
-            
             const itemHeader = document.createElement('div');
+
             const quantity= document.createElement('p');
-            quantity.innerHTML = `x ${id+1}`;
+            quantity.innerHTML = `x ${el.quantity}`;
+
             const tooltip = document.createElement('div');
             tooltip.setAttribute("class", "tooltip");
             const tooltipText = document.createElement('span');
@@ -102,7 +101,8 @@ export const bagSidebar = () => {
             removeButton.appendChild(removeIcon);
 
             removeButton.addEventListener('click', function (){
-                arr = arr.filter((element,ind)=>(element.title !== el.title));
+                el.quantity -= 1;
+                arr = [...arr.filter((a,b)=> a.quantity>0)];              
                 sessionStorage.setItem("userOrder", JSON.stringify(arr));
                 location.reload();
             });
@@ -123,8 +123,6 @@ export const bagSidebar = () => {
             img.setAttribute("src", el.imageLink);
             img.style.height = '80px';
             img.setAttribute("alt", `cover of ${el.title}`);
-
-            
 
             const title = document.createElement('p');
             title.innerHTML = el.title.slice(0,30).concat("...");
