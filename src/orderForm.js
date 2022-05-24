@@ -216,12 +216,21 @@ export const orderForm = () => {
     flatNumberLabel.setAttribute("for", "flat");
     flatNumberLabel.innerHTML = `Flat Number:`;
 
+    let firstNameTooltip = document.createElement('p');
+    firstNameTooltip.setAttribute("class", "form-tooltip");
+    firstNameTooltip.innerHTML = `First a capital letter, min 4 character`;
     form.appendChild(firstNameLabel);
     form.appendChild(firstNameInput);
+    form.appendChild(firstNameTooltip);
+
+    let lastNameTooltip = document.createElement('p');
+    lastNameTooltip.setAttribute("class", "form-tooltip");
+    lastNameTooltip.innerHTML = `First a capital letter, min 5 character`;
 
     form.appendChild(lastNameLabel);
     form.appendChild(lastNameInput);
-
+    form.appendChild(lastNameTooltip);
+    
     form.appendChild(deliveryDateLabel);
     form.appendChild(deliveryDateInput);
 

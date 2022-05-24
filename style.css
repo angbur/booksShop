@@ -323,6 +323,12 @@ span.address {
     color: white;
 }
 
+.form-tooltip {
+    font-size: 0.8rem;
+    margin: 0 1rem;
+    color: var(--important);
+}
+
 .box {
     display: flex;
     flex-direction: column;
