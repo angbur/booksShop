@@ -312,6 +312,17 @@ span.address {
     font-weight: 500;
 }
 
+.button-disabled {
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: white;
+}
+
+.button-disabled:hover {
+    background-color: lightgray;
+    color: white;
+}
+
 .box {
     display: flex;
     flex-direction: column;

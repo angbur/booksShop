@@ -25,12 +25,18 @@ export const orderForm = () => {
 
     const handleChange = (e) => {
         e.preventDefault();
-        const value = e.target.value;
+        const value = e.target.value.trim('');
         data = {
             ...data,
             [e.target.name.trim()]: value
           };
-        console.log(data);
+        if (checkForm()) {
+            document.querySelector('#confirm-button').classList.remove('button-disabled') ;
+            document.querySelector('#confirm-button').disabled = false;
+        } else {
+            document.querySelector('#confirm-button').classList.add('button-disabled');
+            document.querySelector('#confirm-button').disabled = true;
+        }
     };
 
     const validateCheckboxes = () => {
@@ -241,10 +247,13 @@ export const orderForm = () => {
     const submitButton = document.createElement('input');
     submitButton.setAttribute("type", "submit");
     submitButton.setAttribute("value", "Submit");
+    submitButton.setAttribute("id", "confirm-button");
+    submitButton.setAttribute('disabled', true);
     submitButton.setAttribute("class", "button-submit");
     submitButton.innerHTML = `Confirm order`;
 
     form.appendChild(submitButton);   
+    submitButton.classList.add('button-disabled');
 
     return boxForm;
 }
