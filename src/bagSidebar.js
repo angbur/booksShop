@@ -3,8 +3,10 @@ import { orderForm } from "./orderForm.js";
 export const bagSidebar = () => {
 
     let userOrderId = [];
-    if(window.sessionStorage.getItem("userOrder").length > 0) {
+    if(window.sessionStorage.getItem("userOrder") && window.sessionStorage.getItem("userOrder").length > 0) {
         userOrderId = JSON.parse(window.sessionStorage.getItem("userOrder")) || [];
+    } else {
+        userOrderId = [];
     }
     
     const modal = document.createElement('div');

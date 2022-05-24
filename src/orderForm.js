@@ -136,7 +136,7 @@ export const orderForm = () => {
 
     const paymentTypeInput1 = document.createElement('input');
     paymentTypeInput1.setAttribute("type", "radio");
-    paymentTypeInput1.setAttribute("id", "payment-cash");
+    paymentTypeInput1.setAttribute("id", "payment-cash1");
     paymentTypeInput1.setAttribute("value", "Cash");
     paymentTypeInput1.setAttribute("required", "");
     paymentTypeInput1.setAttribute("class", "radio-group");
@@ -144,7 +144,7 @@ export const orderForm = () => {
     paymentTypeInput1.addEventListener('change', handleChange);
 
     const payLabel1 = document.createElement('label');
-    payLabel1.setAttribute("for", "payment-cash");
+    payLabel1.setAttribute("for", "payment-cash1");
     payLabel1.innerHTML = `Cash`;
 
     fieldset.appendChild(paymentTypeInput1);
@@ -152,7 +152,7 @@ export const orderForm = () => {
 
     const paymentTypeInput2 = document.createElement('input');
     paymentTypeInput2.setAttribute("type", "radio");
-    paymentTypeInput2.setAttribute("id", "payment-card");
+    paymentTypeInput2.setAttribute("id", "payment-card2");
     paymentTypeInput2.setAttribute("value", "Card");
     paymentTypeInput2.setAttribute("required", "");
     paymentTypeInput2.setAttribute("class", "radio-group");
@@ -160,7 +160,7 @@ export const orderForm = () => {
     paymentTypeInput2.addEventListener('change', handleChange);
 
     const payLabel2 = document.createElement('label');
-    payLabel2.setAttribute("for", "payment-card");
+    payLabel2.setAttribute("for", "payment-card2");
     payLabel2.innerHTML = `Card`;
 
     fieldset.appendChild(paymentTypeInput2);
