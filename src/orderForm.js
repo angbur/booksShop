@@ -244,9 +244,7 @@ export const orderForm = () => {
     submitButton.setAttribute("class", "button-submit");
     submitButton.innerHTML = `Confirm order`;
 
-    form.appendChild(submitButton);
-
-   
+    form.appendChild(submitButton);   
 
     return boxForm;
 }

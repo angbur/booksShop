@@ -46,7 +46,41 @@ navbar.appendChild(loginButton);
 let appDiv = document.createElement("div");
 appDiv.setAttribute("id", "app")
 document.body.appendChild(appDiv);
-appDiv.append(showCatalog());
+
+let params = new URLSearchParams(window.location.search);
+let paramsStreet = '';
+let paramsHouse = '';
+let paramsFlat = '';
+let paramsFirstName = '';
+let paramsLastName = '';
+
+for (const param of params) {
+    if (param[0]==='street') { paramsStreet = param[1]};
+    if (param[0]==='house') { paramsHouse = param[1]};
+    if (param[0]==='flat') { paramsFlat = param[1]};
+    if (param[0]==='firstName') { paramsFirstName= param[1]};
+    if (param[0]==='lastName') { paramsLastName = param[1]};
+  }
+
+if (params.get('firstName')) {
+    let confirmBox = document.createElement('div');
+    confirmBox.setAttribute('class', 'confirm-box');
+
+    const paragraph = document.createElement('p');
+    paragraph.innerHTML = `The order created. The delivery address is: <br> <span class="address"> ${paramsStreet} house ${paramsHouse} flat ${paramsFlat} </span>.`
+    
+    const paragraph2 = document.createElement('p');
+    paragraph2.innerHTML = `Customer: <br> <span class="address"> ${paramsFirstName} ${paramsLastName}</span>.`
+
+    confirmBox.appendChild(paragraph);
+    confirmBox.appendChild(paragraph2);
+    appDiv.append(confirmBox);
+
+} else {
+    appDiv.append(showCatalog());
+}
+
+
 
 let footer = document.createElement("footer");
 document.body.appendChild(footer);

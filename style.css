@@ -306,6 +306,12 @@ form {
     justify-content: center;
 }
 
+span.address {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
 .box {
     display: flex;
     flex-direction: column;

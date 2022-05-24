@@ -1,3 +1,3 @@
 export const confirmForm = () => {
-    return null;
+    return document.querySelector('#app').innerHTML =``;
 }
