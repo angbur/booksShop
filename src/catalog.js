@@ -66,7 +66,7 @@ export const showCatalog = () => {
                 iconCart.setAttribute("alt", "");
                 buttonIcon.appendChild(iconCart);
 
-                buttonIcon.addEventListener('click', function () {
+                tooltip.addEventListener('click', function () {
                     if (order.find((e,inde)=>e.title === el.title)){
                         order[id].quantity +=1;
                     } else {
