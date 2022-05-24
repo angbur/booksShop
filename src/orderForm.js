@@ -24,7 +24,13 @@ export const orderForm = () => {
 
     const handleChange = (e) => {
         e.preventDefault();
-        const value = e.target.value.trim('');
+        let value = '';
+        if (e.target.min && e.target.min>Date.parse(e.target.value)) {
+            alert('You can`t choose this date!')
+            e.target.value = '';
+        } else {
+            value = e.target.value.trim('');
+        }
         data = {
             ...data,
             [e.target.name.trim()]: value
